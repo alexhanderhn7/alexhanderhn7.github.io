@@ -1,78 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MHP Remodeling LLC | Phoenix</title>
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #000;
-  color: #fff;
-}
-header {
-  padding: 40px 20px;
-  text-align: center;
-}
-h1 {
-  font-size: 36px;
-}
-button {
-  background: #1f6fd1;
-  border: none;
-  color: white;
-  padding: 14px 22px;
-  margin: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 6px;
-}
-section {
-  padding: 40px 20px;
-  max-width: 900px;
-  margin: auto;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MHP Remodeling LLC | Phoenix Demo & Cleanouts</title>
+  <meta name="description" content="MHP Remodeling LLC — Phoenix demolition, cleanouts, and junk hauling. Fast, clean, and reliable. Call or text for a free quote." />
+
+  <style>
+    :root{
+      --bg:#000;
+      --text:#fff;
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.55);
+      --line:rgba(255,255,255,.12);
+      --blue:#1f6fd1;
+      --card:rgba(255,255,255,.06);
+      --shadow:0 14px 32px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:999px;
+      --max:1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(1200px 800px at 15% 10%, rgba(31,111,209,.18), transparent 55%),
+                  radial-gradient(900px 650px at 85% 20%, rgba(255,255,255,.06), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      letter-spacing: .2px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 18px 90px;
+    }
+
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 6px 0 18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 0;
+    }
+    .logo{
+      width:46px;
+      height:46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
+      border: 1px solid var(--line);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: var(--shadow);
+      flex: 0 0 auto;
+    }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .brandtext{
+      min-width: 0;
+    }
+    .brandtext .name{
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 14px;
+      line-height: 1.1;
+      opacity: .95;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .brandtext .tag{
+      color: var(--muted2);
+      font-size: 12px;
+      margin-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .top-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: .4px;
+      transition: transform .06s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      cursor:pointer;
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+    .btn:active{ transform: scale(.98); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(31,111,209,1), rgba(31,111,209,.72));
+      border-color: rgba(31,111,209,.45);
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.04);
+    }
+    .btn small{
+      font-weight: 800;
+      opacity:.9;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 8px;
+      padding: 34px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(650px 260px at 20% 20%, rgba(31,111,209,.25), transparent 60%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;
+      max-width: 780px;
+      margin: 0 auto;
+      text-align:center;
+    }
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 8px 12px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.35);
+      border-radius: var(--radius2);
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(34px, 6vw, 54px);
+      line-height: 1.03;
+      font-weight: 900;
+      letter-spacing: -0.6px;
+      text-transform: uppercase;
+    }
+    .sub{
+      margin: 0 auto 20px;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .hero-cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top: 14px;
+    }
+    .meta{
+      margin-top: 18px;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 22px;
+      padding: 22px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    .section p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Cards grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .card{
+      grid-column: span 12;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .card .small{
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    @media (min-width: 820px){
+      .card.span6{ grid-column: span 6; }
+      .card.span4{ grid-column: span 4; }
+    }
+
+    /* List */
+    ul.clean{
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display:grid;
+      gap: 10px;
+    }
+    ul.clean li{
+      padding: 12px 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      color: var(--muted);
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      line-height: 1.45;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius: 999px;
+      background: var(--blue);
+      margin-top: 6px;
+      flex: 0 0 auto;
+      box-shadow: 0 0 0 4px rgba(31,111,209,.15);
+    }
+
+    /* Quote box */
+    .quote-box{
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(31,111,209,.35);
+      background: linear-gradient(180deg, rgba(31,111,209,.16), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+    }
+    .quote-box .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 22px;
+      color: var(--muted2);
+      font-size: 12px;
+      text-align:center;
+      padding: 10px 0 0;
+    }
+
+    /* Floating Text Button */
+    .floating-text{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 9999;
+      background: linear-gradient(135deg, rgba(31,111,209,1), rgba(31,111,209,.72));
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 16px;
+      border-radius: 999px;
+      font-weight: 900;
+      letter-spacing: .2px;
+      border: 1px solid rgba(31,111,209,.45);
+      box-shadow: 0 14px 28px rgba(0,0,0,.45);
+    }
+    .floating-text:active{ transform: scale(.98); }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">
+          <!-- If you want your logo to show: upload a file named "logo.png" to this repo -->
+          <img src="logo.png" alt="MHP Remodeling LLC Logo" onerror="this.style.display='none'" />
+        </div>
+        <div class="brandtext">
+          <div class="name">MHP Remodeling LLC</div>
+          <div class="tag">Phoenix • Demo • Cleanouts • Junk Hauling</div>
+        </div>
+      </div>
 
-<header>
-  <h1>MHP Remodeling LLC</h1>
-  <p>Professional Demolition, Hauling & Remodeling in Phoenix</p>
+      <div class="top-actions">
+        <a class="btn ghost" href="tel:6028259008">Call 602-825-9008</a>
+        <a class="btn primary" href="sms:6028259008">Text for Quote</a>
+      </div>
+    </div>
 
-  <a href="tel:6028259008"><button>Call Now</button></a>
-  <a href="sms:6028259008"><button>Text Us</button></a>
-</header>
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="kicker">Fast • Clean • Reliable</div>
+        <h1>Demolition & Cleanouts<br/>Done Right</h1>
+        <p class="sub">
+          We handle <b>interior demo</b>, <b>junk removal</b>, and <b>cleanouts</b> across Phoenix and surrounding areas.
+          No drama — just clean work, solid communication, and a job site you’ll respect.
+        </p>
 
-<section>
-<h2>About Us</h2>
-<p>
-MHP Remodeling LLC is a family-operated Phoenix-based business specializing in demolition, hauling, cleanouts, and tile work.
-We believe in honest pricing, clean work, and building trust with every client.
-</p>
-</section>
+        <div class="hero-cta">
+          <a class="btn primary" href="sms:6028259008">Text for a Free Quote</a>
+          <a class="btn" href="tel:6028259008">Call Now</a>
+          <a class="btn ghost" href="#quote">Get Quote Details</a>
+        </div>
 
-<section>
-<h2>Our Services</h2>
-<ul>
-<li>Interior & Full Demolition</li>
-<li>Bathroom & Kitchen Demo</li>
-<li>Junk Removal & Hauling</li>
-<li>Home & Rental Cleanouts</li>
-<li>Tile Floors & Tile Showers</li>
-</ul>
-</section>
+        <div class="meta">
+          Second line: <b>602-465-6892</b> • Email: <b>Alexhanderhn7@gmail.com</b>
+        </div>
+      </div>
+    </div>
 
-<section>
-<h2>Get a Free Quote</h2>
-<p>
-📞 602-825-9008<br>
-📞 602-465-6892<br>
-📧 Alexhanderhn7@gmail.com
-</p>
-</section>
+    <!-- Services -->
+    <div class="section">
+      <h2>Services</h2>
+      <p>Focused, professional services — clean results and quick turnaround.</p>
 
+      <div class="grid">
+        <div class="card span4">
+          <h3>Interior Demolition</h3>
+          <div class="small">Bathrooms, kitchens, flooring, drywall removal — hauled and cleaned out.</div>
+        </div>
+        <div class="card span4">
+          <h3>Cleanouts</h3>
+          <div class="small">Homes, rentals, garages, storage units — fast, respectful, no mess left behind.</div>
+        </div>
+        <div class="card span4">
+          <h3>Junk Hauling</h3>
+          <div class="small">Furniture, debris, construction waste — load, haul, and dispose properly.</div>
+        </div>
+      </div>
+
+      <ul class="clean">
+        <li><span class="dot"></span><span><b>Dust-aware + clean job sites.</b> We keep it organized and professional.</span></li>
+        <li><span class="dot"></span><span><b>Clear communication.</b> You’ll always know what’s happening and when.</span></li>
+        <li><span class="dot"></span><span><b>Fair pricing.</b> No pressure — just honest work and real value.</span></li>
+      </ul>
+    </div>
+
+    <!-- Why us -->
+    <div class="section">
+      <h2>Why MHP</h2>
+      <div class="grid">
+        <div class="card span6">
+          <h3>Family-operated</h3>
+          <div class="small">We treat your home like a project that represents our name — because it does.</div>
+        </div>
+        <div class="card span6">
+          <h3>Built for speed</h3>
+          <div class="small">Crew + tools ready to get in, get it done, and leave it clean.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="section" id="quote">
+      <h2>Get a Free Quote</h2>
+      <p>
+        Text us photos + address + what you want removed, and we’ll reply with a fast estimate.
+      </p>
+
+      <div class="quote-box">
+        <div style="color:var(--muted); line-height:1.6;">
+          <b>Text:</b> 602-825-9008<br/>
+          <b>Call:</b> 602-825-9008<br/>
+          <b>Second line:</b> 602-465-6892<br/>
+          <b>Email:</b> Alexhanderhn7@gmail.com
+        </div>
+
+        <div class="row">
+          <a class="btn primary" href="sms:6028259008">Text for Quote</a>
+          <a class="btn" href="tel:6028259008">Call Now</a>
+          <a class="btn ghost" href="mailto:Alexhanderhn7@gmail.com">Email Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service area -->
+    <div class="section">
+      <h2>Service Area</h2>
+      <p>Phoenix and surrounding areas. If you’re not sure — text us and we’ll confirm.</p>
+    </div>
+
+    <footer>
+      © <span id="y"></span> MHP Remodeling LLC • Phoenix, AZ
+    </footer>
+  </div>
+
+  <!-- Floating Text Button -->
+  <a class="floating-text" href="sms:6028259008">Text for Quote</a>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

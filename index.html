@@ -4,454 +4,299 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MHP Remodeling LLC | Phoenix Demo & Cleanouts</title>
-  <meta name="description" content="MHP Remodeling LLC — Phoenix demolition, cleanouts, and junk hauling. Fast, clean, and reliable. Call or text for a free quote." />
 
   <style>
     :root{
       --bg:#000;
       --text:#fff;
-      --muted:rgba(255,255,255,.72);
-      --muted2:rgba(255,255,255,.55);
-      --line:rgba(255,255,255,.12);
+      --muted:#b5b5b5;
+      --card:#0d0d0d;
+      --border:#1a1a1a;
       --blue:#1f6fd1;
-      --card:rgba(255,255,255,.06);
-      --shadow:0 14px 32px rgba(0,0,0,.45);
-      --radius:18px;
-      --radius2:999px;
-      --max:1080px;
+      --shadow: 0 14px 36px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);}
+
+    /* NAV */
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 22px;position:fixed;top:0;width:100%;z-index:1000;
+      background:linear-gradient(to bottom, rgba(0,0,0,.82), rgba(0,0,0,0));
+    }
+    .nav img{height:42px;}
+    .nav-links{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+    .nav-links a{
+      color:#fff;text-decoration:none;font-size:13px;font-weight:700;opacity:.9;
+      padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .nav .call{
+      background:var(--blue);border:none;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(1200px 800px at 15% 10%, rgba(31,111,209,.18), transparent 55%),
-                  radial-gradient(900px 650px at 85% 20%, rgba(255,255,255,.06), transparent 60%),
-                  var(--bg);
-      color: var(--text);
-      letter-spacing: .2px;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 22px 18px 90px;
-    }
-
-    /* Top bar */
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding: 6px 0 18px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 0;
-    }
-    .logo{
-      width:46px;
-      height:46px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
-      border: 1px solid var(--line);
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow: var(--shadow);
-      flex: 0 0 auto;
-    }
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-    }
-    .brandtext{
-      min-width: 0;
-    }
-    .brandtext .name{
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      font-size: 14px;
-      line-height: 1.1;
-      opacity: .95;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .brandtext .tag{
-      color: var(--muted2);
-      font-size: 12px;
-      margin-top: 4px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .top-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
-
-    /* Buttons */
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 16px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 800;
-      letter-spacing: .4px;
-      transition: transform .06s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-      cursor:pointer;
-      box-shadow: 0 10px 22px rgba(0,0,0,.25);
-    }
-    .btn:active{ transform: scale(.98); }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(31,111,209,1), rgba(31,111,209,.72));
-      border-color: rgba(31,111,209,.45);
-    }
-    .btn.ghost{
-      background: rgba(255,255,255,.04);
-    }
-    .btn small{
-      font-weight: 800;
-      opacity:.9;
-    }
-
-    /* Hero */
+    /* HERO */
     .hero{
-      margin-top: 8px;
-      padding: 34px 18px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      height:100vh;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.92)),
+        url("hero.PNG") center/cover no-repeat;
+      display:flex;align-items:flex-end;
+      padding:120px 22px 64px;
+    }
+    .hero-content{max-width:760px;}
+    .pill{
+      display:inline-block;background:rgba(255,255,255,.10);
+      padding:6px 14px;border-radius:999px;font-size:12px;letter-spacing:.10em;
+      margin-bottom:18px;border:1px solid rgba(255,255,255,.12);
+    }
+    .hero h1{
+      font-size:clamp(36px, 7vw, 66px);
+      font-weight:900;line-height:1.03;margin-bottom:16px;
+      text-transform:uppercase;
+    }
+    .hero p{color:var(--muted);font-size:17px;max-width:560px;margin-bottom:26px;}
+    .buttons{display:flex;gap:14px;flex-wrap:wrap;}
+    .btn{
+      padding:14px 22px;border-radius:999px;text-decoration:none;font-weight:800;font-size:15px;
+      display:inline-flex;align-items:center;gap:10px;
+    }
+    .btn.primary{background:var(--blue);color:#fff;}
+    .btn.secondary{background:#111;color:#fff;border:1px solid #222;}
+
+    /* STICKY FLOAT BUTTON */
+    .float-cta{
+      position:fixed;right:16px;bottom:16px;z-index:1200;
+      background:var(--blue);color:#fff;text-decoration:none;
+      padding:14px 18px;border-radius:999px;font-weight:900;
       box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
+      border:1px solid rgba(255,255,255,.10);
+      transform:translateY(0);
+      transition: transform .18s ease;
     }
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background: radial-gradient(650px 260px at 20% 20%, rgba(31,111,209,.25), transparent 60%);
-      pointer-events:none;
-    }
-    .hero-inner{
-      position:relative;
-      max-width: 780px;
-      margin: 0 auto;
-      text-align:center;
-    }
-    .kicker{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding: 8px 12px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.35);
-      border-radius: var(--radius2);
-      color: var(--muted);
-      font-weight: 800;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      font-size: 12px;
-      margin-bottom: 16px;
-    }
-    h1{
-      margin: 0 0 10px;
-      font-size: clamp(34px, 6vw, 54px);
-      line-height: 1.03;
-      font-weight: 900;
-      letter-spacing: -0.6px;
-      text-transform: uppercase;
-    }
-    .sub{
-      margin: 0 auto 20px;
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.55;
-    }
-    .hero-cta{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      justify-content:center;
-      margin-top: 14px;
-    }
-    .meta{
-      margin-top: 18px;
-      color: var(--muted2);
-      font-size: 13px;
-    }
+    .float-cta:active{transform:scale(.98);}
 
-    /* Sections */
-    .section{
-      margin-top: 22px;
-      padding: 22px 18px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .section h2{
-      margin:0 0 10px;
-      font-size: 22px;
-      letter-spacing: -0.2px;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-    .section p{
-      margin:0;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    /* SECTIONS */
+    section{padding:84px 22px;max-width:1100px;margin:auto;}
+    .section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px;}
+    section h2{font-size:34px;font-weight:900;letter-spacing:-.02em;}
+    section p{color:var(--muted);max-width:680px;font-size:16px;line-height:1.6;}
+    .divider{height:1px;background:#111;margin:0 auto;max-width:1100px;}
 
-    /* Cards grid */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-      margin-top: 14px;
+    /* SERVICES */
+    .services{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:18px;margin-top:34px;
     }
     .card{
-      grid-column: span 12;
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+      background:var(--card);padding:26px;border-radius:18px;border:1px solid var(--border);
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      transition: transform .25s ease, box-shadow .25s ease;
     }
-    .card h3{
-      margin:0 0 6px;
-      font-size: 16px;
-      text-transform: uppercase;
-      font-weight: 900;
-      letter-spacing: .2px;
+    .card:hover{transform:translateY(-3px);box-shadow: var(--shadow);}
+    .card h3{font-size:18px;margin-bottom:8px;font-weight:900;}
+    .card p{font-size:14px;}
+
+    /* GALLERY */
+    .gallery{
+      margin-top:34px;
+      display:grid;grid-template-columns:repeat(2,1fr);
+      gap:14px;
     }
-    .card .small{
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
+    .gallery img{
+      width:100%;height:220px;object-fit:cover;border-radius:18px;
+      border:1px solid var(--border);
+      background:#0a0a0a;
     }
     @media (min-width: 820px){
-      .card.span6{ grid-column: span 6; }
-      .card.span4{ grid-column: span 4; }
+      .gallery{grid-template-columns:repeat(4,1fr);}
+      .gallery img{height:200px;}
     }
 
-    /* List */
-    ul.clean{
-      margin: 12px 0 0;
-      padding: 0;
-      list-style: none;
-      display:grid;
-      gap: 10px;
+    /* REVIEWS */
+    .reviews{
+      margin-top:34px;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
     }
-    ul.clean li{
-      padding: 12px 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: 14px;
-      color: var(--muted);
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      line-height: 1.45;
+    .review{
+      background:var(--card);padding:22px;border-radius:18px;border:1px solid var(--border);
     }
-    .dot{
-      width:10px; height:10px;
-      border-radius: 999px;
-      background: var(--blue);
-      margin-top: 6px;
-      flex: 0 0 auto;
-      box-shadow: 0 0 0 4px rgba(31,111,209,.15);
-    }
+    .stars{letter-spacing:.12em;color:#fff;opacity:.95;font-weight:900;margin-bottom:10px;}
+    .review p{font-size:14px;}
+    .review .name{margin-top:14px;color:#fff;font-weight:900;font-size:13px;opacity:.9;}
 
-    /* Quote box */
-    .quote-box{
-      margin-top: 14px;
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(31,111,209,.35);
-      background: linear-gradient(180deg, rgba(31,111,209,.16), rgba(255,255,255,.03));
-      box-shadow: var(--shadow);
-    }
-    .quote-box .row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top: 12px;
-    }
+    /* MAP */
+    .map-wrap{margin-top:26px;border-radius:18px;overflow:hidden;border:1px solid var(--border);}
+    .map-wrap iframe{width:100%;height:320px;border:0;display:block;background:#0a0a0a;}
 
-    /* Footer */
+    /* FOOTER */
     footer{
-      margin-top: 22px;
-      color: var(--muted2);
-      font-size: 12px;
-      text-align:center;
-      padding: 10px 0 0;
+      padding:60px 22px;border-top:1px solid #111;text-align:center;
     }
+    footer img{height:46px;margin-bottom:16px;}
+    footer p{color:var(--muted);font-size:14px;line-height:1.7;}
+    footer a{color:#fff;text-decoration:none;font-weight:800;}
 
-    /* Floating Text Button */
-    .floating-text{
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 9999;
-      background: linear-gradient(135deg, rgba(31,111,209,1), rgba(31,111,209,.72));
-      color: #fff;
-      text-decoration: none;
-      padding: 14px 16px;
-      border-radius: 999px;
-      font-weight: 900;
-      letter-spacing: .2px;
-      border: 1px solid rgba(31,111,209,.45);
-      box-shadow: 0 14px 28px rgba(0,0,0,.45);
-    }
-    .floating-text:active{ transform: scale(.98); }
+    /* SIMPLE SCROLL ANIMATIONS */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+    .reveal.show{opacity:1;transform:translateY(0);}
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <!-- Top bar -->
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo">
-          <!-- If you want your logo to show: upload a file named "logo.png" to this repo -->
-          <img src="logo.png" alt="MHP Remodeling LLC Logo" onerror="this.style.display='none'" />
-        </div>
-        <div class="brandtext">
-          <div class="name">MHP Remodeling LLC</div>
-          <div class="tag">Phoenix • Demo • Cleanouts • Junk Hauling</div>
-        </div>
-      </div>
 
-      <div class="top-actions">
-        <a class="btn ghost" href="tel:6028259008">Call 602-825-9008</a>
-        <a class="btn primary" href="sms:6028259008">Text for Quote</a>
-      </div>
+  <!-- NAV -->
+  <div class="nav">
+    <img src="logo.PNG" alt="MHP Remodeling LLC" />
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#quote">Quote</a>
+      <a class="call" href="tel:6028259008">Call</a>
     </div>
-
-    <!-- Hero -->
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="kicker">Fast • Clean • Reliable</div>
-        <h1>Demolition & Cleanouts<br/>Done Right</h1>
-        <p class="sub">
-          We handle <b>interior demo</b>, <b>junk removal</b>, and <b>cleanouts</b> across Phoenix and surrounding areas.
-          No drama — just clean work, solid communication, and a job site you’ll respect.
-        </p>
-
-        <div class="hero-cta">
-          <a class="btn primary" href="sms:6028259008">Text for a Free Quote</a>
-          <a class="btn" href="tel:6028259008">Call Now</a>
-          <a class="btn ghost" href="#quote">Get Quote Details</a>
-        </div>
-
-        <div class="meta">
-          Second line: <b>602-465-6892</b> • Email: <b>Alexhanderhn7@gmail.com</b>
-        </div>
-      </div>
-    </div>
-
-    <!-- Services -->
-    <div class="section">
-      <h2>Services</h2>
-      <p>Focused, professional services — clean results and quick turnaround.</p>
-
-      <div class="grid">
-        <div class="card span4">
-          <h3>Interior Demolition</h3>
-          <div class="small">Bathrooms, kitchens, flooring, drywall removal — hauled and cleaned out.</div>
-        </div>
-        <div class="card span4">
-          <h3>Cleanouts</h3>
-          <div class="small">Homes, rentals, garages, storage units — fast, respectful, no mess left behind.</div>
-        </div>
-        <div class="card span4">
-          <h3>Junk Hauling</h3>
-          <div class="small">Furniture, debris, construction waste — load, haul, and dispose properly.</div>
-        </div>
-      </div>
-
-      <ul class="clean">
-        <li><span class="dot"></span><span><b>Dust-aware + clean job sites.</b> We keep it organized and professional.</span></li>
-        <li><span class="dot"></span><span><b>Clear communication.</b> You’ll always know what’s happening and when.</span></li>
-        <li><span class="dot"></span><span><b>Fair pricing.</b> No pressure — just honest work and real value.</span></li>
-      </ul>
-    </div>
-
-    <!-- Why us -->
-    <div class="section">
-      <h2>Why MHP</h2>
-      <div class="grid">
-        <div class="card span6">
-          <h3>Family-operated</h3>
-          <div class="small">We treat your home like a project that represents our name — because it does.</div>
-        </div>
-        <div class="card span6">
-          <h3>Built for speed</h3>
-          <div class="small">Crew + tools ready to get in, get it done, and leave it clean.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quote -->
-    <div class="section" id="quote">
-      <h2>Get a Free Quote</h2>
-      <p>
-        Text us photos + address + what you want removed, and we’ll reply with a fast estimate.
-      </p>
-
-      <div class="quote-box">
-        <div style="color:var(--muted); line-height:1.6;">
-          <b>Text:</b> 602-825-9008<br/>
-          <b>Call:</b> 602-825-9008<br/>
-          <b>Second line:</b> 602-465-6892<br/>
-          <b>Email:</b> Alexhanderhn7@gmail.com
-        </div>
-
-        <div class="row">
-          <a class="btn primary" href="sms:6028259008">Text for Quote</a>
-          <a class="btn" href="tel:6028259008">Call Now</a>
-          <a class="btn ghost" href="mailto:Alexhanderhn7@gmail.com">Email Us</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Service area -->
-    <div class="section">
-      <h2>Service Area</h2>
-      <p>Phoenix and surrounding areas. If you’re not sure — text us and we’ll confirm.</p>
-    </div>
-
-    <footer>
-      © <span id="y"></span> MHP Remodeling LLC • Phoenix, AZ
-    </footer>
   </div>
 
-  <!-- Floating Text Button -->
-  <a class="floating-text" href="sms:6028259008">Text for Quote</a>
+  <!-- FLOAT CTA -->
+  <a class="float-cta" href="sms:6028259008">Text for Quote</a>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <span class="pill">FAST • CLEAN • RELIABLE</span>
+      <h1>DEMOLITION &<br/>CLEANOUTS DONE RIGHT</h1>
+      <p>
+        Interior demolition, junk removal, and property cleanouts across Phoenix.
+        No drama — just clean work, solid communication, and a job site you’ll respect.
+      </p>
+
+      <div class="buttons">
+        <a class="btn primary" href="sms:6028259008">Text for a Free Quote</a>
+        <a class="btn secondary" href="tel:6028259008">Call Now</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <section id="services" class="reveal">
+    <div class="section-title">
+      <h2>Services</h2>
+    </div>
+    <p>Focused, professional services with fast turnaround and clean results.</p>
+
+    <div class="services">
+      <div class="card">
+        <h3>Interior Demolition</h3>
+        <p>Bathrooms, kitchens, walls, floors — done clean, safe, and efficient.</p>
+      </div>
+
+      <div class="card">
+        <h3>Junk Removal</h3>
+        <p>Construction debris, household junk, and job-site cleanup hauled away.</p>
+      </div>
+
+      <div class="card">
+        <h3>Property Cleanouts</h3>
+        <p>Rental turnovers, garages, yards, and full cleanouts — ready for the next step.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WORK GALLERY -->
+  <section id="work" class="reveal">
+    <div class="section-title">
+      <h2>Recent Work</h2>
+    </div>
+    <p>Real jobs. Real results. Upload photos anytime — they’ll show up here automatically.</p>
+
+    <div class="gallery">
+      <img src="work1.PNG" alt="MHP work photo 1" />
+      <img src="work2.PNG" alt="MHP work photo 2" />
+      <img src="work3.PNG" alt="MHP work photo 3" />
+      <img src="work4.PNG" alt="MHP work photo 4" />
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="reveal">
+    <div class="section-title">
+      <h2>What Clients Say</h2>
+    </div>
+    <p>Clean work, clear communication, and respect. That’s the standard.</p>
+
+    <div class="reviews">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“Showed up on time, worked fast, and left everything clean. Super professional.”</p>
+        <div class="name">— Phoenix Homeowner</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“Quick quote, fair price, and the job site was spotless when they finished.”</p>
+        <div class="name">— Property Manager</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“Reliable crew. Great communication. Would hire again for cleanouts.”</p>
+        <div class="name">— Local Client</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- QUOTE / CONTACT -->
+  <section id="quote" class="reveal">
+    <div class="section-title">
+      <h2>Get a Quote</h2>
+    </div>
+    <p>
+      📍 Phoenix, AZ<br/>
+      📞 <a href="tel:6028259008">602-825-9008</a><br/>
+      📞 <a href="tel:6024656892">602-465-6892</a><br/>
+      📧 <a href="mailto:Alexhanderhn7@gmail.com">Alexhanderhn7@gmail.com</a>
+    </p>
+
+    <div class="buttons" style="margin-top:22px;">
+      <a class="btn primary" href="sms:6028259008">Text for a Free Quote</a>
+      <a class="btn secondary" href="tel:6028259008">Call Now</a>
+    </div>
+
+    <div class="map-wrap" style="margin-top:28px;">
+      <iframe
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Phoenix%20AZ&output=embed">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="logo.PNG" alt="MHP Remodeling LLC" />
+    <p>
+      MHP Remodeling LLC — Demolition • Junk Removal • Cleanouts<br/>
+      Phoenix, AZ • <a href="tel:6028259008">602-825-9008</a> •
+      <a href="mailto:Alexhanderhn7@gmail.com">Alexhanderhn7@gmail.com</a>
+    </p>
+  </footer>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    // Reveal animations on scroll
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+    }, { threshold: 0.12 });
+    els.forEach(el => obs.observe(el));
   </script>
+
 </body>
 </html>
